@@ -1,0 +1,77 @@
+<div class="card text-center">
+  <div class="card-header" style="background-color: rgb(168, 167, 223)">
+    <h3>Add Tier</h3>
+  </div>
+  <div class="card-body">
+    <form #addTierForm="ngForm" (ngSubmit)="onSubmit(addTierForm)">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Tier Name</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Tier Name"
+          name="tierName"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">No of Seats</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Number of Seats"
+          name="noOfSeats"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Rows</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Rows"
+          name="rows"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Columns</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Columns"
+          name="cols"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Price</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Price"
+          name="price"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Priority</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Priority"
+          name="priority"
+          ngModel
+          required
+        />
+      </div>
+      <button class="btn btn-primary me-3" type="submit">Submit</button>
+      <button class="btn btn-danger" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>

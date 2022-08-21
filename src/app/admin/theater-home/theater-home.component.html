@@ -1,0 +1,142 @@
+<div class="container mt-4 text-center">
+  <h2>Add Theaters</h2>
+  <div class="row">
+    <p>
+      Add New Tier if required Tier not found
+      <button class="btn btn-primary" (click)="onAddTier()">Add Tier</button>
+    </p>
+    <form
+      #theaterForm="ngForm"
+      (ngSubmit)="onSubmit(theaterForm)"
+    >
+      <div class="input-group mb-3">
+        <span class="input-group-text">Select City</span>
+        <select
+          name="cityName"
+          id="cityName"
+          class="form-select"
+          ngModel
+          required
+        >
+          <option *ngFor="let city of cities; let i = index" [value]="city.id" >
+            {{ city.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Theater Name</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Theater Name"
+          name="theaterName"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Address Line 1</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Address Line 1"
+          name="line1"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Address Line 2</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Address Line 2"
+          name="line2"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Pincode</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Pincode"
+          name="pincode"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Select Tier</span>
+        <select
+          name="tier1"
+          id="tier1"
+          class="form-select"
+          ngModel
+          required
+          #tier1="ngModel"
+        >
+          <option *ngFor="let tier of tiers; let i = index" [value]="tier.id">
+            {{ tier.name }} {{ tier.noOfSeats }} {{ tier.price }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Select Tier</span>
+        <select
+          name="tier2"
+          id="tier2"
+          class="form-select"
+          #tier2="ngModel"
+          ngModel
+          required
+        >
+          <option
+            *ngFor="let tier of tempTiers; let i = index"
+            [value]="tier.id"
+          >
+            {{ tier.name }} {{ tier.noOfSeats }} {{ tier.price }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Select Tier</span>
+        <select name="tier3" id="tier3" class="form-select" ngModel required>
+          <option *ngFor="let tier of tiers; let i = index" [value]="tier.id">
+            {{ tier.name }} {{ tier.noOfSeats }} {{ tier.price }}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-primary mb-3" type="submit">Submit</button>
+    </form>
+  </div>
+
+  <table
+    class="table table-hover text-center table-bordered table-dark"
+    *ngIf="cities"
+  >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Theater Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Update</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let theater of theaters; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ theater.name }}</td>
+        <td>{{ theater.city.name }}</td>
+        <td>
+          <a class="btn btn-primary" (click)="onUpdate(theater)">Update</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" (click)="onDelete(theater)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

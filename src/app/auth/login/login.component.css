@@ -1,0 +1,23 @@
+.background-style{
+    background-image: url("../../../images/My-Movie-Plan-Poster.png");
+    background-size:cover;
+}
+
+.container-style {
+    width: 70%;
+    height: 70vh;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgb(0,0,0);
+    color: white;
+}
+
+.form-background{
+
+    background-color: rgb(51, 53, 69);
+    border-radius: 10px;
+    
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

@@ -1,0 +1,96 @@
+<div
+  class="container container-style background-style d-flex justify-content-end"
+  style="margin-top: 80px"
+>
+  <div
+    class="text-center align-self-center me-4 form-background"
+    style="max-width: 330px;"
+  >
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)" class="p-4">
+      <h1 class="h4 mb-2 fw-normal">Please Signup</h1>
+      <label for="first-name">First Name</label>
+      <div class="mb-1">
+        <input
+          type="text"
+          class="form-control"
+          id="first-name"
+          placeholder="First Name Here"
+          name="fname"
+          ngModel
+          required
+          #fname="ngModel"
+        />
+        <span class="help-block" *ngIf="!fname.valid && fname.touched">Please Enter Valid First Name</span>
+      </div>
+      <label for="last-name">Last Name</label>
+      <div class="mb-1">
+        <input
+          type="text"
+          class="form-control"
+          id="last-name"
+          placeholder="Last Name Here"
+          name="lname"
+          ngModel
+          required
+          #lname="ngModel"
+        />
+        <span class="help-block" *ngIf="!lname.valid && lname.touched">Please Enter Valid Last Name</span>
+      </div>
+      <label for="floatingInput">Email address</label>
+      <div class="mb-1">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+          ngModel
+          name="email"
+          required
+          email
+          #email="ngModel"
+        />
+        <span class="help-block" *ngIf="!email.valid && email.touched">Please Enter Valid Email</span>
+      </div>
+      <label for="floatingPassword">Password</label>
+      <div class="mb-1">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          ngModel
+          name="password"
+          required
+          minlength="6"
+          #password="ngModel"
+        />
+        <span class="help-block" *ngIf="!password.valid && password.touched">Please Enter Valid Password</span>
+      </div>
+      <label for="pnum">Contact Number</label>
+      <div class="mb-1">
+        <input
+          type="text"
+          class="form-control"
+          id="pnum"
+          placeholder="Phone Number Here"
+          name="phoneNum"
+          ngModel
+          required
+          minlength="10"
+          maxlength="10"
+          #pnum="ngModel"
+        />
+        <span class="help-block" *ngIf="!pnum.valid && pnum.touched">Please Enter Valid Contact Number</span>
+      </div>
+      <!--   
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div> -->
+      <button class="w-100 btn btn-primary mt-2" type="submit" [disabled]="!signupForm.valid">
+        Sign in
+      </button>
+    </form>
+  </div>
+</div>

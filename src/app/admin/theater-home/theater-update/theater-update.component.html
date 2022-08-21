@@ -1,0 +1,22 @@
+<div class="card text-center">
+    <div class="card-header" style="background-color: rgb(168, 167, 223)">
+      <h3>Update Theater</h3>
+    </div>
+    <div class="card-body">
+      <form #updateTheaterForm="ngForm" (ngSubmit)="onSubmit(updateTheaterForm)">
+        <label for="theaterName" class="form-label"></label>
+        <input
+          type="text"
+          class="form-control"
+          id="theaterName"
+          name="theaterName"
+          ngModel
+          required
+          [(ngModel)]="updateTheater.name"
+        />
+        <button class="btn btn-primary mt-3 me-3" type="submit">Submit</button>
+        <a class="btn btn-danger mt-3" (click)="onClose()">Close</a>
+      </form>
+    </div>
+  </div>
+  

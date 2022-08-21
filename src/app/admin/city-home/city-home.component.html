@@ -1,0 +1,34 @@
+<div class="container mt-4 text-center">
+  <h2>Add Cities</h2>
+  <form #cityForm="ngForm" (ngSubmit)="onSubmit(cityForm)">
+    <label class="form-label" for="cityName">City Name</label><br />
+    <input
+      class="mt-2 form-control"
+      type="text"
+      id="cityName"
+      style="width: 300px; display: inline"
+      ngModel
+      required
+      name="cityName"
+    /><br />
+    <button class="btn btn-primary mt-4">Submit</button>
+  </form>
+  <table class="table table-hover text-center table-bordered table-dark" *ngIf="cities">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">City Name</th>
+        <th scope="col">Update</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let city of cities; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{city.name}}</td>
+        <td><a class="btn btn-primary" (click)="onUpdate(city)">Update</a></td>
+        <td><a class="btn btn-danger" (click)="onDelete(city)">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
