@@ -25,6 +25,9 @@ import { SuccessModalComponent } from './success-modal/success-modal.component';
 import { AddTierComponent } from './admin/theater-home/add-tier/add-tier.component';
 import { TheaterUpdateComponent } from './admin/theater-home/theater-update/theater-update.component';
 import { TheaterDeleteComponent } from './admin/theater-home/theater-delete/theater-delete.component';
+import { UploadImageComponent } from './admin/movie-home/upload-image/upload-image.component';
+import { UpdateMovieComponent } from './admin/movie-home/update-movie/update-movie.component';
+import { DeleteMovieComponent } from './admin/movie-home/delete-movie/delete-movie.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { TheaterDeleteComponent } from './admin/theater-home/theater-delete/thea
     SuccessModalComponent,
     AddTierComponent,
     TheaterUpdateComponent,
-    TheaterDeleteComponent
+    TheaterDeleteComponent,
+    UploadImageComponent,
+    UpdateMovieComponent,
+    DeleteMovieComponent
   ],
   imports: [
     BrowserModule,

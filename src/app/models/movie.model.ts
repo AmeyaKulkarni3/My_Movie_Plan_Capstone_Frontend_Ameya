@@ -10,9 +10,9 @@ export class Movie{
     public cast : string;
     public poster : string;
     public duration : string;
-    public isActive : boolean;
+    public active : boolean;
     public schedules : Schedule[];
     public genres : Genre[];
-    public langauges : Language[];
+    public languages : Language[];
 
 }

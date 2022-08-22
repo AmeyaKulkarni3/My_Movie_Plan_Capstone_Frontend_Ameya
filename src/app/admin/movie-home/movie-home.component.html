@@ -1,125 +1,231 @@
 <div class="container mt-4 text-center">
-    <h2>Add Theaters</h2>
-    <div class="row">
-      <form
-        #movieForm="ngForm"
-        (ngSubmit)="onSubmit(movieForm)"
-      >
-        <div class="input-group mb-3">
-            <span class="input-group-text">Movie Name</span>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Enter Movie name"
-              name="movieName"
-              ngModel
-              required
-            />
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text">Directors</span>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Enter Director Name separated by comma"
-            name="directors"
-            ngModel
-            required
-          />
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text">Cast</span>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Enter Cast separated by comma"
-            name="cast"
-            ngModel
-            required
-          />
-        </div>
-        <div class="input-group mb-3">
-          <span class="input-group-text">Duration</span>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Enter duration in minutes"
-            name="duration"
-            ngModel
-            required
-          />
-        </div>
-        <div class="input-group mb-3" *ngFor="let gi of genreIndex">
-          <span class="input-group-text">Genre</span>
-          <select
-            name="genre"
-            id="genre"
-            class="form-select"
-            ngModel
-            required
-            #genre="ngModel"
+  <h2>Add Movies</h2>
+  <button class="btn btn-primary mb-3" (click)="onAddMovie()" type="button" *ngIf="!addMovie">Add Movie?</button>
+  <button class="btn btn-danger mb-3" (click)="onAddMovie()" type="button" *ngIf="addMovie">Hide Form</button>
+  <div class="row">
+    <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)" *ngIf="addMovie">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Movie Name</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Movie name"
+          name="movieName"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Directors</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Director Name separated by comma"
+          name="directors"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Cast</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Cast separated by comma"
+          name="cast"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Duration</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter duration in minutes"
+          name="duration"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Release Date</span>
+        <input
+          type="date"
+          class="form-control"
+          placeholder="Enter Date"
+          name="releaseDate"
+          ngModel
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Genre</span>
+        <select
+          name="genre1"
+          id="genre1"
+          class="form-select"
+          ngModel
+          required
+          #genre1="ngModel"
+        >
+          <option
+            *ngFor="let genre of genreTemp; let i = index"
+            [value]="genre.id"
           >
-            <option *ngFor="let genre of genreTemp; let i = index" [value]="genre.id">
-              {{ genre.name }}
-            </option>
-          </select>
-          <button class="btn btn-primary" (click)="onAddGenreIndex()">Add Another Genre</button>
-        </div>
-        <div class="input-group mb-3" *ngFor="let li of languageIndex">
-            <span class="input-group-text">Language</span>
-            <select
-              name="language"
-              id="language"
-              class="form-select"
-              ngModel
-              required
-              #language="ngModel"
-            >
-              <option *ngFor="let language of languageTemp; let i = index" [value]="language.id">
-                {{ language.name }}
-              </option>
-            </select>
-            <button class="btn btn-primary" (click)="onAddLanguageIndex()">Add Another Language</button>
-          </div>
-        <button class="btn btn-primary mb-3" type="submit">Submit</button>
-      </form>
-    </div>
-  
-    <table
-      class="table table-hover text-center table-bordered table-dark"
-      *ngIf="movies"
-    >
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Movie Name</th>
-          <th scope="col">Directors</th>
-          <th scope="col">Cast</th>
-          <th scope="col">Release Date</th>
-          <th scope="col">Status</th>
-          <th scope="col">Update</th>
-          <th scope="col">Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let movie of movies; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ movie.name }}</td>
-          <td>{{ movie.directors }}</td>
-          <td>{{ movie.cast }}</td>
-          <td>{{ movie.releaseDate }}</td>
-          <td>
-            <a class="btn btn-primary" (click)="onActivate()" *ngIf="!isActive">Activate</a>
-            <a class="btn btn-primary" (click)="onActivate()" *ngIf="isActive">De-Activate</a>
-          </td>
-          <td>
-            <a class="btn btn-primary" (click)="onUpdate(movie)">Update</a>
-          </td>
-          <td>
-            <a class="btn btn-danger" (click)="onDelete(movie)">Delete</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Genre</span>
+        <select
+          name="genre2"
+          id="genre2"
+          class="form-select"
+          ngModel
+          #genre2="ngModel"
+        >
+          <option
+            *ngFor="let genre of genreTemp; let i = index"
+            [value]="genre.id"
+          >
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Genre</span>
+        <select
+          name="genre3"
+          id="genre3"
+          class="form-select"
+          ngModel
+          #genre3="ngModel"
+        >
+          <option
+            *ngFor="let genre of genreTemp; let i = index"
+            [value]="genre.id"
+          >
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Language</span>
+        <select
+          name="language1"
+          id="language1"
+          class="form-select"
+          ngModel
+          required
+          #language1="ngModel"
+        >
+          <option
+            *ngFor="let language of languageTemp; let i = index"
+            [value]="language.id"
+          >
+            {{ language.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Language</span>
+        <select
+          name="language2"
+          id="language2"
+          class="form-select"
+          ngModel
+          #language2="ngModel"
+        >
+          <option
+            *ngFor="let language of languageTemp; let i = index"
+            [value]="language.id"
+          >
+            {{ language.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Language</span>
+        <select
+          name="language3"
+          id="language3"
+          class="form-select"
+          ngModel
+          #language3="ngModel"
+        >
+          <option
+            *ngFor="let language of languageTemp; let i = index"
+            [value]="language.id"
+          >
+            {{ language.name }}
+          </option>
+        </select>
+      </div>
+      <button class="btn btn-primary mb-3" type="submit">Submit</button>
+    </form>
   </div>
-  
+
+  <table
+    class="table table-hover text-center table-bordered table-dark"
+    *ngIf="movies.length > 0"
+  >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Movie Name</th>
+        <th scope="col">Directors</th>
+        <th scope="col">Cast</th>
+        <th scope="col">Release Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Update</th>
+        <th scope="col">Remove</th>
+        <th scope="col">Add Poster</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ movie.name }}</td>
+        <td>{{ movie.directors }}</td>
+        <td>{{ movie.cast }}</td>
+        <td>{{ movie.releaseDate }}</td>
+        <td>
+          <a
+            class="btn btn-primary btn-sm"
+            *ngIf="!movie.active"
+            (click)="onActivate(movie.id)"
+            >Activate</a
+          >
+          <a
+            class="btn btn-danger btn-sm"
+            *ngIf="movie.active"
+            (click)="onDeActivate(movie.id)"
+            >De-Activate</a
+          >
+        </td>
+        <td>
+          <a class="btn btn-primary btn-sm" (click)="onUpdate(movie)">Update</a>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm" (click)="onDelete(movie)">Delete</a>
+        </td>
+        <td>
+          <a
+            class="btn btn-primary btn-sm"
+            (click)="onAddPoster(movie)"
+            *ngIf="movie.poster === ''"
+            >Add Poster</a
+          >
+          <a
+            class="btn btn-danger btn-sm"
+            (click)="onAddPoster(movie)"
+            *ngIf="movie.poster !== ''"
+            >Replace Poster</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

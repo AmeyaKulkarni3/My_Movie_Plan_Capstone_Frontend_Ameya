@@ -1,0 +1,73 @@
+<div class="card text-center">
+    <div class="card-header" style="background-color: rgb(168, 167, 223)">
+      <h3>Update Movie</h3>
+    </div>
+    <div class="card-body">
+        <form #movieUpdateForm="ngForm" (ngSubmit)="onSubmit(movieUpdateForm)">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Movie Name</span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Movie name"
+                name="movieName"
+                ngModel
+                required
+                [(ngModel)]="movie.name"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Directors</span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Director Name separated by comma"
+                name="directors"
+                ngModel
+                required
+                [(ngModel)]="movie.directors"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Cast</span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Cast separated by comma"
+                name="cast"
+                ngModel
+                required
+                [(ngModel)]="movie.cast"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Duration</span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter duration in minutes"
+                name="duration"
+                ngModel
+                required
+                [(ngModel)]="movie.duration"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Release Date</span>
+              <input
+                type="date"
+                class="form-control"
+                placeholder="Enter Date"
+                name="releaseDate"
+                ngModel
+                required
+                [(ngModel)]="movie.releaseDate"
+              />
+            </div>
+            <button class="btn btn-primary mt-3 me-3" type="submit">Submit</button>
+            <a class="btn btn-danger mt-3" (click)="onClose()">Close</a>
+          </form>
+    </div>
+  </div>
+  
+

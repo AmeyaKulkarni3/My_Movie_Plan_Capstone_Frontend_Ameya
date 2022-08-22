@@ -1,0 +1,22 @@
+<div class="card text-center">
+  <div class="card-header" style="background-color: rgb(168, 167, 223)">
+    <h3>Upload Image for {{ movie.name }}</h3>
+  </div>
+  <div class="card-body">
+    <form #uploadImageForm="ngForm" (ngSubmit)="onSubmit(uploadImageForm)">
+      <label for="moviePoster" class="form-label"></label>
+      <input
+        type="file"
+        class="form-control"
+        id="moviePoster"
+        name="moviePoster"
+        ngModel
+        required
+        placeholder="Select Image File..."
+        (change)="onSelectFile($event)"
+      />
+      <button class="btn btn-primary mt-3 me-3" type="submit">Upload</button>
+      <a class="btn btn-danger mt-3" (click)="onClose()">Cancel</a>
+    </form>
+  </div>
+</div>
