@@ -5,6 +5,7 @@ import { CityHomeComponent } from './admin/city-home/city-home.component';
 import { GenreHomeComponent } from './admin/genre-home/genre-home.component';
 import { LanguageHomeComponent } from './admin/language-home/language-home.component';
 import { MovieHomeComponent } from './admin/movie-home/movie-home.component';
+import { ScheduleHomeComponent } from './admin/schedule-home/schedule-home.component';
 import { TheaterHomeComponent } from './admin/theater-home/theater-home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'genre', component: GenreHomeComponent },
       { path: 'language', component: LanguageHomeComponent },
       { path: 'movie', component: MovieHomeComponent },
+      { path: 'schedule', component: ScheduleHomeComponent },
     ],
   },
   {

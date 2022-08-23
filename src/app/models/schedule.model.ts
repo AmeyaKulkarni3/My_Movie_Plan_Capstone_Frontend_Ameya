@@ -9,5 +9,6 @@ export class Schedule {
   public theater: Theater;
   public showtime: Showtime;
   public date: Date;
+  public toDate: Date;
   public seats: Seat[];
 }

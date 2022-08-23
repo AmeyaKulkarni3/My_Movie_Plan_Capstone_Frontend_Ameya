@@ -1,0 +1,25 @@
+<div class="card text-center">
+    <div class="card-header" style="background-color: rgb(168, 167, 223)">
+      <h3>Add Showtime</h3>
+    </div>
+    <div class="card-body">
+        <form #addShowtimeForm="ngForm" (ngSubmit)="onSubmit(addShowtimeForm)">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Genre Name</span>
+              <input
+                type="time"
+                class="form-control"
+                placeholder="Enter Time"
+                name="time"
+                ngModel
+                required
+              />
+            </div>
+            <button class="btn btn-primary mt-3 me-3" type="submit">Submit</button>
+            <a class="btn btn-danger mt-3" (click)="onClose()">Close</a>
+          </form>
+    </div>
+  </div>
+  
+
+

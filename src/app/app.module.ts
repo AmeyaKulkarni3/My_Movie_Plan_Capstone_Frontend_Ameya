@@ -28,6 +28,13 @@ import { TheaterDeleteComponent } from './admin/theater-home/theater-delete/thea
 import { UploadImageComponent } from './admin/movie-home/upload-image/upload-image.component';
 import { UpdateMovieComponent } from './admin/movie-home/update-movie/update-movie.component';
 import { DeleteMovieComponent } from './admin/movie-home/delete-movie/delete-movie.component';
+import { UpdateGenreComponent } from './admin/genre-home/update-genre/update-genre.component';
+import { DeleteGenreComponent } from './admin/genre-home/delete-genre/delete-genre.component';
+import { UpdateLanguageComponent } from './admin/language-home/update-language/update-language.component';
+import { DeleteLanguageComponent } from './admin/language-home/delete-language/delete-language.component';
+import { ScheduleHomeComponent } from './admin/schedule-home/schedule-home.component';
+import { AddShowtimeComponent } from './admin/schedule-home/add-showtime/add-showtime.component';
+import { DeleteScheduleComponent } from './admin/schedule-home/delete-schedule/delete-schedule.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +59,14 @@ import { DeleteMovieComponent } from './admin/movie-home/delete-movie/delete-mov
     TheaterDeleteComponent,
     UploadImageComponent,
     UpdateMovieComponent,
-    DeleteMovieComponent
+    DeleteMovieComponent,
+    UpdateGenreComponent,
+    DeleteGenreComponent,
+    UpdateLanguageComponent,
+    DeleteLanguageComponent,
+    ScheduleHomeComponent,
+    AddShowtimeComponent,
+    DeleteScheduleComponent
   ],
   imports: [
     BrowserModule,

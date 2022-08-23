@@ -1,43 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { ErrorModalComponent } from 'src/app/error-modal/error-modal.component';
-import { Movie } from 'src/app/models/movie.model';
-import { MovieService } from 'src/app/services/movie.service';
+import { Genre } from 'src/app/models/genre.model';
+import { GenreService } from 'src/app/services/genre.service';
 import { SuccessModalComponent } from 'src/app/success-modal/success-modal.component';
 
 @Component({
-  selector: 'app-update-movie',
-  templateUrl: './update-movie.component.html',
-  styleUrls: ['./update-movie.component.css'],
+  selector: 'app-update-genre',
+  templateUrl: './update-genre.component.html',
+  styleUrls: ['./update-genre.component.css']
 })
-export class UpdateMovieComponent implements OnInit {
-  movie: Movie;
+export class UpdateGenreComponent implements OnInit, OnDestroy {
 
-  updateMovieSub : Subscription;
+  genre: Genre;
+
+  updateGenreSub : Subscription;
 
   constructor(
     private modalRef: BsModalRef,
     private modalService: BsModalService,
-    private movieService: MovieService
+    private genreService: GenreService
   ) {}
 
   ngOnInit(): void {}
 
   onSubmit(form: NgForm) {
-    let movie = new Movie();
-    movie.id = this.movie.id;
-    movie.name = form.value.movieName;
-    movie.directors = form.value.directors;
-    movie.cast = form.value.cast;
-    movie.duration = form.value.duration;
-    movie.releaseDate = form.value.releaseDate;
+    let genre = new Genre();
+    genre.id = this.genre.id;
+    genre.name = form.value.genreName;
 
-    this.updateMovieSub = this.movieService.updateMovie(movie).subscribe({
+    this.updateGenreSub = this.genreService.updateGenre(genre).subscribe({
       next : res => {
         const initialState = {
-          successMessage : "Movie details updated successfully!"
+          successMessage : "Genre updated successfully!"
         };
         this.modalRef = this.modalService.show(SuccessModalComponent, {
           initialState,
@@ -59,4 +56,9 @@ export class UpdateMovieComponent implements OnInit {
   onClose() {
     this.modalRef.hide();
   }
+
+  ngOnDestroy(): void {
+    this.updateGenreSub.unsubscribe();
+  }
+
 }

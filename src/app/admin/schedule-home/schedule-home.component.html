@@ -1,0 +1,121 @@
+<div class="container mt-4 text-center">
+  <h2>Schedule Home</h2>
+  <h4>Add Showtime if you can't find required showtime</h4>
+  <button class="btn btn-primary mb-3" type="button" (click)="onAddShowtime()">Add Showtime</button>
+  <h4>Create Schedule for a movie</h4>
+  <button
+    class="btn btn-primary mb-3" (click)="onAddSchedule()" type="button" *ngIf="!addSchedule">Add Schedule</button>
+  <button
+    class="btn btn-danger mb-3" (click)="onAddSchedule()" type="button"*ngIf="addSchedule">Hide Form
+  </button>
+  <div class="row">
+    <form #scheduleForm="ngForm" (ngSubmit)="onSubmit(scheduleForm)" *ngIf="addSchedule">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Movie</span>
+            <select
+              name="movieId"
+              id="movieId"
+              class="form-select"
+              ngModel
+              required
+            >
+              <option
+                *ngFor="let movie of movies; let i = index"
+                [value]="movie.id"
+              >
+                {{ movie.name }}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Theater</span>
+            <select
+              name="theaterId"
+              id="theaterId"
+              class="form-select"
+              ngModel
+              required
+            >
+              <option
+                *ngFor="let theater of theaters; let i = index"
+                [value]="theater.id"
+              >
+                {{ theater.name }}  {{theater.city.name}}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Showtime</span>
+            <select
+              name="showtimeId"
+              id="showtimeId"
+              class="form-select"
+              ngModel
+              required
+            >
+              <option
+                *ngFor="let showtime of showtimes; let i = index"
+                [value]="showtime.id"
+              >
+                {{ showtime.time }}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">From Date</span>
+            <input
+              type="date"
+              class="form-control"
+              placeholder="Select From Date"
+              name="fromDate"
+              ngModel
+              required
+            />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">To Date</span>
+            <input
+              type="date"
+              class="form-control"
+              placeholder="Select To Date"
+              name="toDate"
+              ngModel
+            />
+          </div>
+          <button class="btn btn-primary mb-3" type="submit">Submit</button>
+    </form>
+  </div>
+  <table
+    class="table table-hover text-center table-bordered table-dark"
+    *ngIf="schedules.length > 0"
+  >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Movie Name</th>
+        <th scope="col">Theater Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Date</th>
+        <th scope="col">Showtime</th>
+        <th scope="col">Update</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let schedule of schedules; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ schedule.movie.name }}</td>
+        <td>{{ schedule.theater.name }}</td>
+        <td>{{ schedule.theater.city.name}}</td>
+        <td>{{ schedule.date }}</td>
+        <td>{{ schedule.showtime.time }}</td>
+        <td>
+          <a class="btn btn-primary btn-sm" (click)="onUpdate(schedule)">Update</a>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm" (click)="onDelete(schedule)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

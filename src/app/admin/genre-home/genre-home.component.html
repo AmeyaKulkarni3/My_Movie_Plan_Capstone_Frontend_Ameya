@@ -1,1 +1,45 @@
-<p>genre-home works!</p>
+<div class="container mt-4 text-center">
+  <h2>Genre Home</h2>
+  <button class="btn btn-primary mb-3" (click)="onAddGenre()" type="button" *ngIf="!addGenre">Add Genre?</button>
+  <button class="btn btn-danger mb-3" (click)="onAddGenre()" type="button" *ngIf="addGenre">Hide Form</button>
+  <form #addGenreForm="ngForm" (ngSubmit)="onSubmit(addGenreForm)" *ngIf="addGenre">
+    <div class="input-group mb-3">
+        <span class="input-group-text">Genre Name</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Genre name"
+          name="genreName"
+          style="width: 300px; display: inline"
+          ngModel
+          required
+        />
+    </div>
+    <button class="btn btn-primary mb-3" type="submit">Update</button>
+  </form>
+  <table
+    class="table table-hover text-center table-bordered table-dark"
+    *ngIf="genres.length > 0"
+  >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Genre Name</th>
+        <th scope="col">Update</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let genre of genres; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ genre.name }}</td>
+        <td>
+          <a class="btn btn-primary btn-sm" (click)="onUpdate(genre)">Update</a>
+        </td>
+        <td>
+          <a class="btn btn-danger btn-sm" (click)="onDelete(genre)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

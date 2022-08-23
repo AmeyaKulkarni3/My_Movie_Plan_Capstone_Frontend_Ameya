@@ -33,4 +33,8 @@ export class AdminHomeComponent implements OnInit {
     this.router.navigate(['../movie'],{relativeTo:this.route});
   }
 
+  onScheduleClick(){
+    this.router.navigate(['../schedule'],{relativeTo:this.route});
+  }
+
 }
