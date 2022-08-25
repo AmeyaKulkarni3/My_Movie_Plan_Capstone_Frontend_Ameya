@@ -1,0 +1,32 @@
+<div class="card text-center">
+  <div
+    class="card-header container"
+    style="background-color: rgb(168, 167, 223)"
+  >
+    <div class="row">
+      <div class="col">
+        <h3>{{ selectedSchedule.movie.name }}</h3>
+      </div>
+      <div class="col-3">
+        <h3>{{ selectedSchedule.date }}</h3>
+      </div>
+      <div class="col-3">
+        <h3>{{ selectedSchedule.showtime.time }}</h3>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5>{{ selectedSchedule.theater.name }}</h5>
+    {{ selectedSchedule.theater.address.line1 }},{{
+      selectedSchedule.theater.address.line2
+    }},{{ selectedSchedule.theater.address.city}}-{{selectedSchedule.theater.address.pincode}}
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-5">
+            <div *ngFor="let seat of seats">{{seat.seatNumber}}</div>
+        </div>
+      </div>
+    </div>
+    <hr />
+  </div>
+</div>

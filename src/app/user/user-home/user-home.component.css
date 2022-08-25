@@ -1,0 +1,13 @@
+.carousel-style{
+    height: 25rem;
+    background-color: gray;
+}
+
+.image-style{
+    height: 25rem;
+    object-fit:scale-down;
+}
+
+.filter-style{
+    border-right: 1px solid black;
+}

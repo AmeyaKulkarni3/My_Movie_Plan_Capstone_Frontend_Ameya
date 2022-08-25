@@ -35,6 +35,10 @@ import { DeleteLanguageComponent } from './admin/language-home/delete-language/d
 import { ScheduleHomeComponent } from './admin/schedule-home/schedule-home.component';
 import { AddShowtimeComponent } from './admin/schedule-home/add-showtime/add-showtime.component';
 import { DeleteScheduleComponent } from './admin/schedule-home/delete-schedule/delete-schedule.component';
+import { MovieListItemComponent } from './movie/movie-list-item/movie-list-item.component';
+import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
+import { ScheduleListItemComponent } from './schedule/schedule-list-item/schedule-list-item.component';
+import { BookTicketComponent } from './book-ticket/book-ticket.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +70,11 @@ import { DeleteScheduleComponent } from './admin/schedule-home/delete-schedule/d
     DeleteLanguageComponent,
     ScheduleHomeComponent,
     AddShowtimeComponent,
-    DeleteScheduleComponent
+    DeleteScheduleComponent,
+    MovieListItemComponent,
+    MovieDetailComponent,
+    ScheduleListItemComponent,
+    BookTicketComponent
   ],
   imports: [
     BrowserModule,

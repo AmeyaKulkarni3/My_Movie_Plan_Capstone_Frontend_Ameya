@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { City } from '../models/city.model';
@@ -15,6 +15,8 @@ export class CityService {
   cities = new BehaviorSubject<City[]>([]);
 
   fetchedCities : City[] = [];
+
+  activeCity = new EventEmitter<City>();
 
   constructor(private http: HttpClient, private errorService: ErrorService) {}
 

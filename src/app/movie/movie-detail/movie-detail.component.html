@@ -1,0 +1,35 @@
+<div class="card text-center" >
+  <div class="card-header" style="background-color: rgb(168, 167, 223)">
+    <h3>Book Tickets</h3>
+  </div>
+  <div class="card-body">
+    <div class="container p-0">
+      <div class="row">
+        <div class="col-5">
+          <div
+            class="container mb-2 justify-content-center p-0"
+            style="width: 200px"
+          >
+            <img
+              [src]="movie.image"
+              alt=""
+              class="image-style"
+            />
+            {{ movie.name }}
+          </div>
+        </div>
+        <div class="col-7">
+            <span style="font-weight:bold">Director:</span><br>{{movie.directors}}<br>
+            <span style="font-weight:bold">Cast:</span><br>{{movie.cast}}<br>
+            <span style="font-weight:bold">Duration:</span><br>{{movie.duration}} min
+        </div>
+      </div>
+    </div>
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let schedule of schedules">
+            <app-schedule-list-item [schedule]="schedule"></app-schedule-list-item>
+        </li>
+    </ul>
+  </div>
+</div>

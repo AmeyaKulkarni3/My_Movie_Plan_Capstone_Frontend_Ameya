@@ -11,21 +11,24 @@
       aria-controls="navbarNavAltMarkup"
       aria-expanded="false"
       aria-label="Toggle navigation"
+    ></button>
+    <form
+      class="form-inline d-flex ms-5 align-middle"
+      *ngIf="isAuthenticated"
+      #searchForm="ngForm"
     >
-    </button>
-      <form class="form-inline d-flex ms-5 align-middle" *ngIf="isAuthenticated" #searchForm="ngForm">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Enter Movie Name"
-          aria-label="Search"
-          style="width: 500px"
-          ngModel
-          name="movieName"
-        />
-        <button class="btn btn-outline-light" type="submit">Search</button>
-      </form>
-    
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Enter Movie Name"
+        aria-label="Search"
+        style="width: 500px"
+        ngModel
+        name="movieName"
+      />
+      <button class="btn btn-outline-light" type="submit">Search</button>
+    </form>
+
     <div
       class="collapse navbar-collapse d-flex justify-content-end"
       id="navbarNavAltMarkup"
@@ -49,6 +52,30 @@
           (click)="onlogin()"
           >Login</a
         >
+        <li class="nav-item dropdown" *ngIf="!isAdmin && isAuthenticated && cities.length > 0">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            style="color: white"
+          >
+            {{ activeCity.name }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                routerLinkActive="active"
+                (click)="onCitySelect(c)"
+                style="cursor: pointer"
+                *ngFor="let c of cities; let i = index"
+                >{{c.name}}</a
+              >
+            </li>
+          </ul>
+        </li>
         <li
           class="nav-item dropdown"
           *ngIf="isUserAvailable && isAuthenticated"
@@ -64,8 +91,23 @@
             {{ user.firstName }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLinkActive="active" (click)="onLogout()" style="cursor: pointer;">Logout</a></li>
-            <li><a class="dropdown-item" routerLinkActive="active" *ngIf="!isAdmin">Get Bookings</a></li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLinkActive="active"
+                (click)="onLogout()"
+                style="cursor: pointer"
+                >Logout</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                routerLinkActive="active"
+                *ngIf="!isAdmin"
+                >Get Bookings</a
+              >
+            </li>
           </ul>
         </li>
         <a

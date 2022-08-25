@@ -14,5 +14,6 @@ export class Movie{
     public schedules : Schedule[];
     public genres : Genre[];
     public languages : Language[];
+    public image : any;
 
 }

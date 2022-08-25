@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { ErrorModalComponent } from 'src/app/error-modal/error-modal.component';
@@ -41,7 +43,8 @@ export class ScheduleHomeComponent implements OnInit, OnDestroy {
     private movieService: MovieService,
     private theaterService: TheaterService,
     private scheduleService: ScheduleService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private router : Router
   ) {}
 
   ngOnInit(): void {

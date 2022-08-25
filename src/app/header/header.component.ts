@@ -1,7 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
+import { ErrorModalComponent } from '../error-modal/error-modal.component';
+import { City } from '../models/city.model';
 import { User } from '../models/user.model';
 import { AuthService } from '../services/auth.service';
+import { CityService } from '../services/city.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,17 +14,28 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
   private userSub: Subscription = new Subscription();
   private userDataSub: Subscription = new Subscription();
+
   isAuthenticated = false;
   onLogin = true;
   isUserAvailable = false;
   user: User;
   isAdmin = false;
 
+  citySub : Subscription;
+
+  cities : City[] = [];
+  activeCity : City;
+
+  modalRef : BsModalRef;
+
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private cityService : CityService,
+    private modalService : BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if(user){
           this.isAdmin = user.roles === "[ROLE_ADMIN]" ? true : false;
         }
-        
       },
     });
 
@@ -41,9 +55,42 @@ export class HeaderComponent implements OnInit, OnDestroy {
         console.log(this.user);
         this.isUserAvailable = true;
         }
-        
       },
     });
+
+    this.citySub = this.cityService.cities.subscribe({
+      next : response => {
+        this.cities = response;
+        if(this.cities.length > 0){
+          if(!localStorage.getItem("city")){
+            console.log(this.cities);
+            this.activeCity = this.cities[0];
+            localStorage.setItem("city",JSON.stringify(this.activeCity));
+          } else {
+            this.activeCity = JSON.parse(localStorage.getItem("city"))
+          }
+        }
+        this.cityService.activeCity.emit(this.activeCity);
+      },
+      error: (errorRes) => {
+        const initialState = {
+          errorRes,
+        };
+        this.modalRef = this.modalService.show(ErrorModalComponent, {
+          initialState,
+        });
+      },
+    });
+
+    this.cityService.getCities();
+
+  }
+
+  onCitySelect(city : City){
+    console.log(city);
+    this.activeCity = city;
+    localStorage.setItem("city",JSON.stringify(city));
+    this.cityService.activeCity.emit(this.activeCity);
   }
   
 
