@@ -11,6 +11,7 @@ export class MovieListItemComponent implements OnInit {
 
   @Input() movie : Movie;
 
+
   constructor(private modalRef : BsModalRef) { }
 
   onClose(){
@@ -18,6 +19,7 @@ export class MovieListItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.movie);
     
   }
 

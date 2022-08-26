@@ -19,14 +19,73 @@
     <h5>{{ selectedSchedule.theater.name }}</h5>
     {{ selectedSchedule.theater.address.line1 }},{{
       selectedSchedule.theater.address.line2
-    }},{{ selectedSchedule.theater.address.city}}-{{selectedSchedule.theater.address.pincode}}
+    }},{{ selectedSchedule.theater.address.city }}-{{
+      selectedSchedule.theater.address.pincode
+    }}
+    <hr />
     <div class="container p-0">
       <div class="row">
+        <div class="col-7">
+          {{ tiers[0].name }} {{ tiers[0].price | currency: "INR" }} per seat
+          <div *ngFor="let row of tier1" class="row p-0">
+            <div class="col-1 p-0">{{ row[0].seatNumber.substring(0, 1) }}</div>
+            <div
+              *ngFor="let seat of row"
+              class="col fs-6 p-0 seat-fonts seat-style"
+              [ngClass]="{ 'seat-select-bgr': seat.isSelected || seat.booked}"
+              (click)="onSeatSelect(seat)"
+            >
+              {{ seat.seatNumber.substring(1) }}
+            </div>
+          </div>
+          <hr />
+          {{ tiers[1].name }} {{ tiers[1].price | currency: "INR" }} per seat
+          <div *ngFor="let row of tier2" class="row p-0">
+            <div class="col-1 p-0">{{ row[0].seatNumber.substring(0, 1) }}</div>
+            <div
+              *ngFor="let seat of row"
+              class="col fs-6 p-0 seat-fonts seat-style"
+              [ngClass]="{ 'seat-select-bgr': seat.isSelected || seat.booked}"
+              (click)="onSeatSelect(seat)"
+            >
+              {{ seat.seatNumber.substring(1) }}
+            </div>
+          </div>
+          <hr />
+          {{ tiers[2].name }} {{ tiers[2].price | currency: "INR" }} per seat
+          <div *ngFor="let row of tier3" class="row p-0">
+            <div class="col-1 p-0">{{ row[0].seatNumber.substring(0, 1) }}</div>
+            <div
+              *ngFor="let seat of row"
+              class="col fs-6 p-0 seat-fonts seat-style"
+              [ngClass]="{ 'seat-select-bgr': seat.isSelected || seat.booked}"
+              (click)="onSeatSelect(seat)"
+            >
+              {{ seat.seatNumber.substring(1) }}
+            </div>
+          </div>
+          SCREEN HERE
+        </div>
         <div class="col-5">
-            <div *ngFor="let seat of seats">{{seat.seatNumber}}</div>
+          <div *ngIf="selectedSeats.length === 0">No Seat Selected!</div>
+          <div *ngIf="selectedSeats.length !== 0">
+            <span>Selected Seats</span>
+            <div class="row">
+              <span>{{ selecteSeatsString }}</span>
+            </div>
+            <div>
+              <span>Total Price</span>
+              {{ totalPrice | currency: "INR" }}
+            </div>
+            <br>
+            <button class="btn btn-primary" (click)="onConfirmClick()">
+              Confirm
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <hr />
+    <button class="btn btn-danger" (click)="onCancelClick()">Cancel</button>
   </div>
 </div>

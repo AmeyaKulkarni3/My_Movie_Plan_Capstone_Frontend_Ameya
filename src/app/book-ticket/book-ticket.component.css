@@ -1,0 +1,21 @@
+.seat-fonts{
+    font-size: xx-small;
+}
+.seat-style{
+    border: 1px solid green;
+    border-radius: 3px;
+    width: 15px;
+    cursor: pointer;
+}
+
+div.seat-style:hover{
+    background-color: green;
+}
+
+div.seat-style:active,div.seat-style:focus{
+    background-color: green;
+}
+
+.seat-select-bgr{
+    background-color: green;
+}

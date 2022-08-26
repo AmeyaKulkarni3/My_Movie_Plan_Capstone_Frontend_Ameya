@@ -27,6 +27,8 @@ export class CityService {
       .pipe(catchError(this.errorService.handleError),tap(response => {
         this.fetchedCities = response;
         console.log(response);
+        localStorage.setItem("activeCity",JSON.stringify(this.fetchedCities[0]));
+        this.activeCity.emit(this.fetchedCities[0]);
         this.cities.next(this.fetchedCities);
       })).subscribe();
   }

@@ -39,6 +39,8 @@ import { MovieListItemComponent } from './movie/movie-list-item/movie-list-item.
 import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
 import { ScheduleListItemComponent } from './schedule/schedule-list-item/schedule-list-item.component';
 import { BookTicketComponent } from './book-ticket/book-ticket.component';
+import { BookingConfirmationComponent } from './book-ticket/booking-confirmation/booking-confirmation.component';
+import { BookingSuccessComponent } from './book-ticket/booking-success/booking-success.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import { BookTicketComponent } from './book-ticket/book-ticket.component';
     MovieListItemComponent,
     MovieDetailComponent,
     ScheduleListItemComponent,
-    BookTicketComponent
+    BookTicketComponent,
+    BookingConfirmationComponent,
+    BookingSuccessComponent
   ],
   imports: [
     BrowserModule,

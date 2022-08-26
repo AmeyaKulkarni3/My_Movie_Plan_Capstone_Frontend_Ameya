@@ -14,7 +14,6 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   private userSub: Subscription = new Subscription();
   private userDataSub: Subscription = new Subscription();
 
@@ -24,53 +23,49 @@ export class HeaderComponent implements OnInit, OnDestroy {
   user: User;
   isAdmin = false;
 
-  citySub : Subscription;
+  citySub: Subscription;
 
-  cities : City[] = [];
-  activeCity : City;
+  cities: City[] = [];
+  activeCity: City;
 
-  modalRef : BsModalRef;
+  modalRef: BsModalRef;
 
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private cityService : CityService,
-    private modalService : BsModalService
+    private cityService: CityService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
+
     this.userSub = this.authService.user.subscribe({
       next: (user) => {
         this.isAuthenticated = !!user;
-        if(user){
-          this.isAdmin = user.roles === "[ROLE_ADMIN]" ? true : false;
+        if (user) {
+          this.isAdmin = user.roles === '[ROLE_ADMIN]' ? true : false;
         }
       },
     });
 
     this.userDataSub = this.userService.fetchedUser.subscribe({
-      next : (user) => {
-        if(user){
+      next: (user) => {
+        if (user) {
           this.user = user;
-        console.log(this.user);
-        this.isUserAvailable = true;
+          console.log(this.user);
+          this.isUserAvailable = true;
         }
       },
     });
+    
+    if(localStorage.getItem('activeCity')){
+      this.activeCity = JSON.parse(localStorage.getItem('activeCity'));
+      this.cityService.activeCity.emit(this.activeCity);
+    }
 
     this.citySub = this.cityService.cities.subscribe({
-      next : response => {
+      next: (response) => {
         this.cities = response;
-        if(this.cities.length > 0){
-          if(!localStorage.getItem("city")){
-            console.log(this.cities);
-            this.activeCity = this.cities[0];
-            localStorage.setItem("city",JSON.stringify(this.activeCity));
-          } else {
-            this.activeCity = JSON.parse(localStorage.getItem("city"))
-          }
-        }
-        this.cityService.activeCity.emit(this.activeCity);
       },
       error: (errorRes) => {
         const initialState = {
@@ -81,18 +76,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         });
       },
     });
-
-    this.cityService.getCities();
-
   }
 
-  onCitySelect(city : City){
+  onCitySelect(city: City) {
     console.log(city);
     this.activeCity = city;
-    localStorage.setItem("city",JSON.stringify(city));
+    localStorage.setItem('activeCity', JSON.stringify(city));
     this.cityService.activeCity.emit(this.activeCity);
   }
-  
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();

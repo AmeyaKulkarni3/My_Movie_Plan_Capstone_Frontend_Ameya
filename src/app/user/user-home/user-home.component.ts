@@ -43,6 +43,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   theaterSub: Subscription;
   genreSub: Subscription;
   languageSub: Subscription;
+  citySub : Subscription;
 
   modalRef: BsModalRef;
 
@@ -59,12 +60,19 @@ export class UserHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.activeCity = JSON.parse(localStorage.getItem('city'));
+
+    this.cityService.getCities();
+    
+    this.activeCity = JSON.parse(localStorage.getItem('activeCity'));
+    console.log(this.activeCity);
+    
     this.cityService.activeCity.subscribe((res) => {
       this.activeCity = res;
       this.moviesInCity = [];
+      this.theatersInCity = []
       this.filterTheaters(this.theaters);
     });
+    
     this.genreService.getGenres();
     this.genreSub = this.genreService.genres.subscribe({
       next: (response) => {
@@ -79,6 +87,7 @@ export class UserHomeComponent implements OnInit, OnDestroy {
         });
       },
     });
+
     this.languageService.getLanguages();
     this.languageSub = this.languageService.languages.subscribe({
       next: (response) => {
@@ -93,10 +102,12 @@ export class UserHomeComponent implements OnInit, OnDestroy {
         });
       },
     });
+
     this.movieService.getMovies();
     this.movieSub = this.movieService.movies.subscribe({
       next: (response) => {
         this.movies = response;
+        console.log(this.movies);
         this.movies.forEach((movie) => {
           this.movieService.dowloadImage(movie);
         });
@@ -115,7 +126,11 @@ export class UserHomeComponent implements OnInit, OnDestroy {
     this.theaterSub = this.theaterService.theaters.subscribe({
       next: (response) => {
         this.theaters = response;
-        this.filterTheaters(this.theaters);
+        console.log(this.theaters);
+        if(this.theatersInCity.length === 0){
+          this.filterTheaters(this.theaters);
+        }
+        
       },
       error: (errorRes) => {
         const initialState = {
@@ -128,11 +143,16 @@ export class UserHomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  filterTheaters(theaters) {
+  filterTheaters(theaters:Theater[]) {
+    console.log(theaters);
+    console.log(this.activeCity);
     if(this.activeCity){
-      this.theatersInCity = theaters.filter(
-        (theater) => theater.city.id === this.activeCity.id
-      );
+      theaters.forEach(t => {
+        if(t.city.id === this.activeCity.id){
+          this.theatersInCity.push(t)
+        }
+      });
+      console.log(this.theatersInCity);
       this.theatersInCity.forEach((t) => {
         let schedules: Schedule[] = t.schedules;
         schedules.forEach((s) => {

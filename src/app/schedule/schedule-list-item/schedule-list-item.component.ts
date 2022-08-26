@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { BookTicketComponent } from 'src/app/book-ticket/book-ticket.component';
 import { Schedule } from 'src/app/models/schedule.model';
 
@@ -22,11 +22,19 @@ export class ScheduleListItemComponent implements OnInit {
   }
 
   onScheduleSelect(schedule : Schedule){
-    const initialState= {
-      selectedSchedule : schedule,
+
+    const config : ModalOptions = {
+      backdrop:'static',
+      keyboard:false,
+      animated:true,
+      ignoreBackdropClick:true,
+      initialState :{
+        selectedSchedule : schedule,
+      }
     }
 
-    this.modalRef = this.modalService.show(BookTicketComponent,{initialState,class:'modal-lg'})
+    this.modalRef = this.modalService.show(BookTicketComponent,config);
+    this.modalRef.setClass('modal-lg');
   }
 
 }
