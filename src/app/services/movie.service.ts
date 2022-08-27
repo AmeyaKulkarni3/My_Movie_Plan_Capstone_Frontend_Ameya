@@ -16,6 +16,8 @@ export class MovieService {
   image = new BehaviorSubject<any>({});
   fetchedImage: any[];
 
+  searchString = new BehaviorSubject<string>("");
+
   private URL = 'http://localhost:8080/movie';
 
   constructor(private http: HttpClient, private errorService: ErrorService) {}
@@ -127,5 +129,10 @@ export class MovieService {
         this.movies.next(this.fetchedMovies);
       })
     );
+  }
+
+  updateSearchString(searchString : string){
+    console.log(searchString);
+    this.searchString.next(searchString);
   }
 }

@@ -4,4 +4,5 @@ export class Genre{
     public id : number;
     public name : string;
     public movies : Movie[];
+    public isSelected : boolean;
 }

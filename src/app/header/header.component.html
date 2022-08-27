@@ -12,10 +12,11 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     ></button>
-    <form
+    <!-- <form
       class="form-inline d-flex ms-5 align-middle"
-      *ngIf="isAuthenticated"
+      *ngIf="isAuthenticated && !isAdmin"
       #searchForm="ngForm"
+      (ngSubmit)="onSearchClick(searchForm)"
     >
       <input
         class="form-control me-2"
@@ -27,7 +28,7 @@
         name="movieName"
       />
       <button class="btn btn-outline-light" type="submit">Search</button>
-    </form>
+    </form> -->
 
     <div
       class="collapse navbar-collapse d-flex justify-content-end"
@@ -105,6 +106,8 @@
                 class="dropdown-item"
                 routerLinkActive="active"
                 *ngIf="!isAdmin"
+                (click)="onGetBookings()"
+                style="cursor: pointer"
                 >Get Bookings</a
               >
             </li>

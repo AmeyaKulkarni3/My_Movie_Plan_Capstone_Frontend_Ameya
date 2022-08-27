@@ -43,17 +43,17 @@
       <div class="row mb-2">
         <h6>Filter Genres</h6>
         <button
-          class="btn btn-outline-success btn-sm col-4 me-2 mb-2"
+          class="btn btn-sm col-4 me-2 mb-2"
           *ngFor="let genre of genres"
           style="width: max-content; border-radius: 20px"
           #btn
-          (click)="btn.classList.toggle('active')"
+          [ngClass]="{'btn-outline-success':!genre.isSelected, 'btn-success':genre.isSelected}"
           (click)="onGenreClick(genre)"
         >
           {{ genre.name }}
         </button>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <h6>Filter Languages</h6>
         <button
           class="btn btn-outline-success btn-sm col-4 me-2 mb-2"
@@ -65,17 +65,50 @@
         >
           {{ language.name }}
         </button>
-      </div>
+      </div> -->
     </div>
     <div class="col-10">
-      <div class="row" *ngIf="movies.length > 0">
-        <app-movie-list-item
-          *ngFor="let movie of moviesInCity; let i = index"
-          [movie]="movie"
-          class="col-4"
-          (click)="onMovieSelect(movie)"
-          style="cursor:pointer"
-        ></app-movie-list-item>
+      <!-- <div *ngIf="searchClicked">
+        <div class="row" *ngIf="searchedMovies.length > 0">
+          <app-movie-list-item
+            *ngFor="let movie of searchedMovies; let i = index"
+            [movie]="movie"
+            class="col-4"
+            (click)="onMovieSelect(movie)"
+            style="cursor:pointer"
+          ></app-movie-list-item>
+        </div>
+        <div class="row" *ngIf="searchedMovies.length === 0">
+          <h3>Movies not available!</h3>
+        </div>
+      </div> -->
+      <div *ngIf="genreClicked">
+        <div class="row" *ngIf="genreFilteredMovies.length > 0">
+          <app-movie-list-item
+            *ngFor="let movie of genreFilteredMovies; let i = index"
+            [movie]="movie"
+            class="col-4"
+            (click)="onMovieSelect(movie)"
+            style="cursor:pointer"
+          ></app-movie-list-item>
+        </div>
+        <div class="row" *ngIf="genreFilteredMovies.length === 0">
+          <h3>Movies not available!</h3>
+        </div>
+      </div>
+      <div *ngIf="!genreClicked && searchedMovies.length === 0">
+        <div class="row" *ngIf="moviesInCity.length > 0">
+          <app-movie-list-item
+            *ngFor="let movie of moviesInCity; let i = index"
+            [movie]="movie"
+            class="col-4"
+            (click)="onMovieSelect(movie)"
+            style="cursor:pointer"
+          ></app-movie-list-item>
+        </div>
+        <div class="row" *ngIf="moviesInCity.length === 0">
+          <h3>Movies not available!</h3>
+        </div>
       </div>
     </div>
   </div>
