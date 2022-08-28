@@ -1,0 +1,35 @@
+<div class="card text-center">
+  <div
+    class="card-header container"
+    style="background-color: rgb(168, 167, 223)"
+  >
+    Confirm Booking?
+  </div>
+  <div class="card-body">
+    <h5>{{ selectedSchedule.movie.name }}</h5>
+    {{ selectedSchedule.date }},{{ selectedSchedule.showtime.time }}
+    <h6>{{ selectedSchedule.theater.name }}</h6>
+    {{ selectedSchedule.theater.address.line1 }},{{
+      selectedSchedule.theater.address.line2
+    }},{{ selectedSchedule.theater.address.city }}-{{
+      selectedSchedule.theater.address.pincode
+    }}
+    <div>
+        <span style="font-weight: bold">Seats Selected</span><br />{{
+            selectedSeatsString
+          }}<br />
+    </div>
+    
+    <span style="font-weight: bold">Total Price</span><br />{{
+      totalPrice | currency: "INR"
+    }}<br />
+    <hr />
+    <div class="container p-0 text-center">
+      Use Barcode Below for payment<br />
+      <img src="../../../assets/QRCode.jpg" alt="" style="width: 200px" /><br />
+    </div>
+    <hr />
+      <button class="btn btn-primary" (click)="onDoneClick()">Done</button>
+      <button class="btn btn-danger ms-3" (click)="onCancelClick()">Cancel</button>
+  </div>
+</div>

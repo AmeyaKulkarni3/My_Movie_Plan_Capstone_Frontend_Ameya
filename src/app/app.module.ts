@@ -43,6 +43,9 @@ import { BookingConfirmationComponent } from './book-ticket/booking-confirmation
 import { BookingSuccessComponent } from './book-ticket/booking-success/booking-success.component';
 import { UserBookingComponent } from './user/user-booking/user-booking.component';
 import { UserBookingListItemComponent } from './user/user-booking/user-booking-list-item/user-booking-list-item.component';
+import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,10 @@ import { UserBookingListItemComponent } from './user/user-booking/user-booking-l
     BookingConfirmationComponent,
     BookingSuccessComponent,
     UserBookingComponent,
-    UserBookingListItemComponent
+    UserBookingListItemComponent,
+    FooterComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
